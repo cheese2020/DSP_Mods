@@ -29,6 +29,9 @@ public static class PlayerFunctions
         I18N.Add("NoMetadataConsumptionRecord",
             "No metadata consumption records found.",
             "未找到元数据消耗记录。");
+        I18N.Add("AddMetadata",
+            "Add 10000 Metadata",
+            "元数据+10000");
     }
 
     public static void TeleportToOuterSpace()
@@ -132,6 +135,18 @@ public static class PlayerFunctions
             propertySystem.SaveToFile();
         });
     }
+    public static void AddMetadata()
+        {
+            var propertySystem = DSPGame.propertySystem;
+            if (propertySystem == null) return;
+
+            // Loop through the item IDs and add item production
+            for (int num18 = 0; num18 < PropertySystem.itemIds.Length; num18++)
+            {
+                propertySystem.AddItemProduction(-1L, PropertySystem.itemIds[num18], 10000);
+            }
+            propertySystem.SaveToFile();
+        }
 
     public static void RemoveCurrentMetadataConsumptions()
     {
